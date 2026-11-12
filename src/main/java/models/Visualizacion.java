@@ -9,7 +9,7 @@ public class Visualizacion {
     private Booelan completado;
     public Visualizacion() {
     }
-    public Visualizacion(UUID id, LocalDate fecha_visualizacion, Booelan completado) {
+    public Visualizacion(UUID id, LocalDate fecha_visualizacion, Boolean completado) {
         this.id = id;
         this.fecha_visualizacion = fecha_visualizacion;
         this.completado = completado;

@@ -3,14 +3,39 @@ package com.example.NutreApp.models;
 import java.util.UUID;
 import com.example.NutreApp.models.helpers.CategoriaVideo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 public class Video {
-    private UUID id;
+ 
+    @Id 
+    @GeneratedValue(strategy = GenerationType.UUID)
+    UUID id;
+
+    @Column(name = "titulo", nullable = false, unique = false)
     private String titulo;
+
+    @Column (name = "descripcion", nullable = false, unique = false)
     private String descripcion;
+
+    @Column (name = "url",nullable = false, unique = false )
     private String url;
-    private CategoriaVideo categoria;
+
+    @Column (name = "categoria", nullable = false, unique = false)
+    private Categoria categoria;
+    
+    @ManyToOne(mappedBy="video")
+    @JoinColumn (name="id")
+    private Video video 
+
+    private List<Visualizacion> visualizaciones;
 
     public Video() {
+        
     }
 
     public Video(UUID id, String titulo, String descripcion, String url, CategoriaVideo categoria) {

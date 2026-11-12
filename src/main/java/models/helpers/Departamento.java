@@ -1,4 +1,4 @@
-package models;
+package models.helpers;
 
 public enum Departamento {
 

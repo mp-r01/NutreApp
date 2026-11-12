@@ -3,6 +3,7 @@ package com.example.NutreApp.models;
 import java.util.UUID;
 
 import com.example.NutreApp.models.helpers.Rol;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
@@ -12,7 +13,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import models.helpers.Departamento;
 
 
 @Entity 
@@ -24,10 +28,10 @@ public class Usuario {
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column (name=, nulleble = false , unique = false, length = 100)
+    @Column (name="titulo", nulleble = false , unique = false, length = 100)
     private String nombre;
 
-    @Column(name"correcto",nullable = false, unique = true, length = 80)
+    @Column(name =)"correcto",nullable = false, unique = true, length = 80)
     private String correo;
 
     @Enumerated(EnumType.STRING)
@@ -38,8 +42,15 @@ public class Usuario {
     @Column(name="departamento", nullable = false, unique = false)
     private Departamento departamento;
     
-    @Column(name"contraseña_hash", nullable = false, unique = false)
-    private String contrasenia_hash;
+    @Column(name="contraseña_hash", nullable = false, unique = false)
+    private String contrasena_hash;
+
+    //CREANDO RELACIONES //
+    @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference(value = "usuario-visualizacion")
+    private List <Visualizacion> visualizaciones;
+
+
 
     public Usuario() {
     }
